@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: '22'
 
       # Installs Gradle 8.10.2 on the runner and puts `gradle` on PATH,
       # so the build does NOT need the committed gradle-wrapper.jar.

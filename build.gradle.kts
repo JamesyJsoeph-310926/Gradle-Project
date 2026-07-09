@@ -2,7 +2,7 @@ plugins {
     java
 }
 
-group = "Week3_Selenium_Project"
+group = "GradleWork"
 version = "1.0-SNAPSHOT"
 
 repositories {
