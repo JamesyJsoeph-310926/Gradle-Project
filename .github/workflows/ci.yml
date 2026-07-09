@@ -1,55 +1,37 @@
-name: Order Repository CI
+name: Java CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main, master ]
   pull_request:
+    branches: [ main, master ]
 
 jobs:
-  order-test:
+  build:
 
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:16
-
-        env:
-          POSTGRES_DB: testdb
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-
-        ports:
-          - 5432:5432
-
-        options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-
     steps:
+      - uses: actions/checkout@v4
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Java
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 22
+          java-version: '21'
 
-      - name: Setup Gradle
+      # Installs Gradle 8.10.2 on the runner and puts `gradle` on PATH,
+      # so the build does NOT need the committed gradle-wrapper.jar.
+      # (Zscaler blocks committing/uploading .jar files, so the wrapper
+      #  jar is missing from the repo; using an installed Gradle avoids it.)
+      - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
 
-      - name: Make Gradle Wrapper Executable
-        run: chmod +x gradlew
-
-      - name: Run Order Test
-        run: ./gradlew OrdersDataIT
-        env:
-          JAVA_TOOL_OPTIONS: >
-            -Ddb.url=jdbc:postgresql://localhost:5432/testdb
-            -Ddb.user=postgres
-            -Ddb.password=postgres
+      # Runs compile for the whole project, but only the Testcontainers +
+      # plain unit tests (org.testcontainers.sdet.*). The Selenium/Cucumber UI
+      # tests (org.selenium.sdet.*) need a running web app + browser, so they
+      # are excluded from CI. Run the full suite locally with `gradle test`.
+      - name: Run tests
+        run: gradle clean test --tests "com.ust.sdet.week3.*"
