@@ -7,7 +7,7 @@ public class OrderBuilder {
     private String sku = "SKU-RET-101";
     private int quantity = 1;
     private long totalPaise = 129_900;
-    private String status = "PLACED";
+    private String status = "NEW";
     private LocalDate orderedOn = LocalDate.of(2026, 7, 8);
     private boolean refunded = false;
 
