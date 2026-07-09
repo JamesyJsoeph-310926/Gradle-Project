@@ -19,7 +19,7 @@ val slf4jVersion = "2.0.17"
 
 val testcontainersVersion = "2.0.5"
 val flywayVersion = "10.22.0"
-val mysqlVersion = "42.7.4"
+val mysqlVersion = "8.0.44"
 
 java {
     toolchain {
