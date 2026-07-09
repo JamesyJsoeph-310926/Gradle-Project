@@ -41,8 +41,4 @@ bin/
 
 .idea/
 **/.idea/
-*.jar
 target/
-
-.gradlew
-.gradlew.bat
