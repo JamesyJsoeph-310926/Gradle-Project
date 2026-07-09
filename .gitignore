@@ -41,4 +41,5 @@ bin/
 
 .idea/
 **/.idea/
-target/
+*.jar
+
