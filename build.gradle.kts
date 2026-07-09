@@ -54,8 +54,8 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers-junit-jupiter:$testcontainersVersion")
     testImplementation("org.testcontainers:testcontainers-mysql:$testcontainersVersion")
     testImplementation("org.flywaydb:flyway-core:$flywayVersion")
-    testImplementation("org.flywaydb:flyway-database-mysql:$flywayVersion")
-    testImplementation("org.mysql:mysql:$mysqlVersion")
+    testImplementation("org.flywaydb:flyway-mysql:$flywayVersion")
+    testImplementation("org.mysql:mysql-connector-j:$mysqlVersion")
 
 
 }
