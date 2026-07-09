@@ -51,7 +51,7 @@ public class OrdersDataIT {
 
     @Test
     void factoryPersistsBuilderDataAgainstIsolatedMySql() {
-        long id = factory.persisted(anOrder().withQuantity(3));
+        long id = factory.persisted(OrderBuilder.anOrder().withQuantity(3));
 
         assertTrue(id > 0);
         assertEquals(1, repository.count());
@@ -59,8 +59,8 @@ public class OrdersDataIT {
 
     @Test
     void countsOnlyThisTestsOrders() {
-        factory.persisted(anOrder());
-        factory.persisted(anOrder().withSku("SKU-RET-202").withQuantity(2));
+        factory.persisted(OrderBuilder.anOrder());
+        factory.persisted(OrderBuilder.anOrder().withSku("SKU-RET-202").withQuantity(2));
 
         assertEquals(2, repository.count());
     }
