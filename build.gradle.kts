@@ -43,6 +43,7 @@ dependencies {
 
     testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
     testImplementation("io.qameta.allure:allure-cucumber7-jvm")
+    testImplementation("io.qameta.allure:allure-junit5")
 
     testImplementation("com.aventstack:extentreports:$extentVersion")
 
