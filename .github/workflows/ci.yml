@@ -32,7 +32,7 @@ jobs:
 
       # Run only the required test class
       - name: Run Tests
-        run: gradle clean test --tests "com.ust.sdet.week3.data.OrderDataIT"
+        run: gradle clean test --tests "com.ust.sdet.week3.data.OrdersDataIT"
 
       # Checkout gh-pages branch for Allure history
       - name: Checkout gh-pages
