@@ -1,3 +1,69 @@
+#name: Java CI
+#
+#on:
+#  push:
+#    branches: [main, master]
+#  pull_request:
+#    branches: [main, master]
+#
+#permissions:
+#  contents: write
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout Code
+#        uses: actions/checkout@v5
+#
+#      - name: Set up Java 22
+#        uses: actions/setup-java@v5
+#        with:
+#          distribution: temurin
+#          java-version: '22'
+#
+#      # Installs Gradle on the runner so the build does not
+#      # require a committed gradle-wrapper.jar.
+#      - name: Set up Gradle
+#        uses: gradle/actions/setup-gradle@v4
+#        with:
+#          gradle-version: '8.10.2'
+#
+#      # Run only the required test class
+#      - name: Run Tests
+#        run: gradle clean test --tests "com.ust.sdet.week3.data.OrdersDataIT"
+#
+#      # Checkout gh-pages branch for Allure history
+#      - name: Checkout gh-pages
+#        if: always()
+#        uses: actions/checkout@v5
+#        continue-on-error: true
+#        with:
+#          ref: gh-pages
+#          path: gh-pages
+#
+#      # Generate Allure Report
+#      - name: Generate Allure Report
+#        if: always()
+#        uses: simple-elf/allure-report-action@master
+#        with:
+#          gh_pages: gh-pages
+#          allure_results: target/allure-results
+#          allure_report: allure-report
+#          allure_history: allure-history
+#          keep_reports: 20
+#
+#      # Publish Allure Report to gh-pages
+#      - name: Deploy Report
+#        if: always()
+#        uses: peaceiris/actions-gh-pages@v4
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_branch: gh-pages
+#          publish_dir: allure-history
+
+
 name: Java CI
 
 on:
@@ -32,7 +98,7 @@ jobs:
 
       # Run only the required test class
       - name: Run Tests
-        run: gradle clean test --tests "com.ust.sdet.week3.data.OrdersDataIT"
+        run: gradle clean test
 
       # Checkout gh-pages branch for Allure history
       - name: Checkout gh-pages
@@ -49,7 +115,7 @@ jobs:
         uses: simple-elf/allure-report-action@master
         with:
           gh_pages: gh-pages
-          allure_results: target/allure-results
+          allure_results: build/allure-results
           allure_report: allure-report
           allure_history: allure-history
           keep_reports: 20

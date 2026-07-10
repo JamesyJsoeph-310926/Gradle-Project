@@ -96,7 +96,15 @@ tasks.withType<Test>().configureEach {
     }
 }
 
+//tasks.test {
+//    useJUnitPlatform()
+//    maxParallelForks = 1
+//}
+
 tasks.test {
+    description = "Run the tests"
+    include("**/ReportingInsightsTest.class")
+    include("**/OrdersDataIT.class")
     useJUnitPlatform()
     maxParallelForks = 1
 }
