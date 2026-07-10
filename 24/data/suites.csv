@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"  As a shopper
+  I want to find products, add them to my cart, and complete an order
+  So that the result purchase journey is covered in shared language","4385","Buy a single product end to end","","2026-07-08","passed","2026-07-08","","Catalog checkout","Buy a single product end to end",""
