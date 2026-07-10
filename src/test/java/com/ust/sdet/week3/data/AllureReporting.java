@@ -1,4 +1,4 @@
-package com.ust.sdet.week3.tests;
+package com.ust.sdet.week3.data;
 
 import io.qameta.allure.*;
 import org.junit.jupiter.api.Test;
