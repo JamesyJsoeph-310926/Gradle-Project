@@ -2,36 +2,77 @@ name: Java CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
+
+permissions:
+  contents: write
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
+      - name: Set up Java 22
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '22'
 
-      # Installs Gradle 8.10.2 on the runner and puts `gradle` on PATH,
-      # so the build does NOT need the committed gradle-wrapper.jar.
-      # (Zscaler blocks committing/uploading .jar files, so the wrapper
-      #  jar is missing from the repo; using an installed Gradle avoids it.)
+      # Installs Gradle on the runner so the build does not
+      # require a committed gradle-wrapper.jar.
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
 
-      # Runs compile for the whole project, but only the Testcontainers +
-      # plain unit tests (org.testcontainers.sdet.*). The Selenium/Cucumber UI
-      # tests (org.selenium.sdet.*) need a running web app + browser, so they
-      # are excluded from CI. Run the full suite locally with `gradle test`.
-      - name: Run tests
+      # Run only the required test class
+      - name: Run Tests
         run: gradle clean test --tests "com.ust.sdet.week3.data.OrdersDataIT"
+
+      # Create gh-pages branch if it does not exist
+      - name: Create gh-pages branch if missing
+        if: always()
+        run: |
+          git fetch origin
+          if ! git ls-remote --exit-code --heads origin gh-pages; then
+            git checkout --orphan gh-pages
+            git rm -rf . || true
+            echo "# Allure Reports" > README.md
+            git add README.md
+            git commit -m "Initialize gh-pages"
+            git push origin gh-pages
+          fi
+
+      # Checkout gh-pages branch for Allure history
+      - name: Checkout gh-pages
+        if: always()
+        uses: actions/checkout@v5
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      # Generate Allure Report
+      - name: Generate Allure Report
+        if: always()
+        uses: simple-elf/allure-report-action@master
+        with:
+          gh_pages: gh-pages
+          allure_results: build/allure-results
+          allure_report: build/allure-report
+          allure_history: allure-history
+          keep_reports: 20
+
+      # Publish Allure Report to gh-pages
+      - name: Deploy Report
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

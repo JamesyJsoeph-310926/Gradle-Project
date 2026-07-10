@@ -1,5 +1,6 @@
 plugins {
     java
+    id ("io.qameta.allure") version "2.12.0"
 }
 
 group = "GradleWork"
@@ -94,6 +95,14 @@ tasks.withType<Test>().configureEach {
         events("passed", "skipped", "failed")
     }
 }
+
+tasks.test {
+    description = "Run the tests"
+    include("**/AllureReporting.class")
+    include("**/OrderTestIT.class")
+    maxParallelForks = 1
+}
+
 
 tasks.test {
     useJUnitPlatform()
