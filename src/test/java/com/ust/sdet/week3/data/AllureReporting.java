@@ -105,12 +105,7 @@ class AllureReporting {
         assertTrue(signals.contains("category split"));
     }
     void forfailingtest2() {
-        List<String> signals = List.of(
-                "invlidstatus",
-                "trend",
-                "category split",
-                "environment"
-        );
+        List<String> signals = List.of("invlidstatus", "trend", "category split", "environment");
         assertEquals(4, signals.size());
         assertTrue(signals.contains("not trend"));
         assertTrue(signals.contains(0));
