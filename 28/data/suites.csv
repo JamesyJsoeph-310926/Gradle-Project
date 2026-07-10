@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","138","resetMakesTestsOrderIndependent()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.week3.data.OrdersDataIT","com.ust.sdet.week3.data.OrdersDataIT","resetMakesTestsOrderIndependent"
+"","81","flywaySeedsReferenceDataButNoPerTestOrders()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.week3.data.OrdersDataIT","com.ust.sdet.week3.data.OrdersDataIT","flywaySeedsReferenceDataButNoPerTestOrders"
+"","81","countsOnlyThisTestsOrders()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.week3.data.OrdersDataIT","com.ust.sdet.week3.data.OrdersDataIT","countsOnlyThisTestsOrders"
+"","60","factoryPersistsBuilderDataAgainstIsolatedMySql()","","2026-07-10","passed","2026-07-10","","com.ust.sdet.week3.data.OrdersDataIT","com.ust.sdet.week3.data.OrdersDataIT","factoryPersistsBuilderDataAgainstIsolatedMySql"
