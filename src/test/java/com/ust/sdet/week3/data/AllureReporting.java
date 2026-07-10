@@ -1,6 +1,7 @@
 package com.ust.sdet.week3.data;
 
 import io.qameta.allure.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
@@ -32,4 +33,31 @@ class AllureReporting {
         assertTrue(categories.contains("\"flaky\": true"));
         assertTrue(categories.contains("timeout|stale element|connection reset"));
     }
+
+    @Test
+    @Story("Categories")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Should appear under Product defects")
+    void productDefect() {
+        assertEquals(10, 20, "Incorrect cart total");
+    }
+
+    @Test
+    @Story("Categories")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Should appear under Test defects (broken)")
+    void brokenDefect() {
+        String text = null;
+        text.length();
+    }
+
+    @Test
+    @Disabled
+    @Story("Categories")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("The Test will skip and add to skipped category")
+    void skippedTest() {
+
+    }
+
 }
