@@ -105,8 +105,6 @@ tasks.test {
     description = "Run the tests"
     include("**/AllureReporting.class")
     include("**/OrdersDataIT.class")
-    include("**/OrdersDataIT.class")
-    include("**/AllureReporting.class")
     useJUnitPlatform()
     maxParallelForks = 1
 }
