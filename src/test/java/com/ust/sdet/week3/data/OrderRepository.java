@@ -183,10 +183,7 @@ public class OrderRepository {
      * @return generated order id
      */
     public long save(Order order) {
-        logger.info("Creating order. SKU={}, Quantity={}, Status={}",
-                order.sku(),
-                order.quantity(),
-                order.status());
+        logger.info("Creating order. SKU={}, Quantity={}, Status={}", order.sku(), order.quantity(), order.status());
 
         String orderSql = """
         INSERT INTO retail_orders(status, total_paise, ordered_on, refunded)
