@@ -1,7 +1,16 @@
 package com.ust.sdet.week3.data;
 
+import com.ust.sdet.week3.data.model.Order;
+
 import java.time.LocalDate;
 
+/**
+ * Purpose:
+ * - Provides sensible defaults
+ * - Avoids fixture duplication
+ * - Improves readability
+ * - Supports test isolation
+ */
 public class OrderBuilder {
 
     private String sku = "SKU-RET-101";

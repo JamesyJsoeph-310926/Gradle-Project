@@ -58,6 +58,7 @@ dependencies {
     testImplementation("org.flywaydb:flyway-mysql:$flywayVersion")
     testImplementation("com.mysql:mysql-connector-j:$mysqlVersion")
 
+    testImplementation("org.slf4j:slf4j-simple:$slf4jVersion")
 
 }
 
@@ -68,9 +69,7 @@ tasks.withType<JavaCompile>().configureEach {
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 
-    systemProperty(
-        "baseUrl",
-        providers.gradleProperty("baseUrl")
+    systemProperty("baseUrl", providers.gradleProperty("baseUrl")
             .orElse("http://localhost:5173")
             .get()
     )

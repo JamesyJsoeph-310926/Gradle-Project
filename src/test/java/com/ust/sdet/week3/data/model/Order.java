@@ -1,4 +1,4 @@
-package com.ust.sdet.week3.data;
+package com.ust.sdet.week3.data.model;
 
 import java.time.LocalDate;
 

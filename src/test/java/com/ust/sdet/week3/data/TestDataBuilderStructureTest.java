@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
+
+import com.ust.sdet.week3.data.model.Order;
 import org.junit.jupiter.api.Test;
 
 class TestDataBuilderStructureTest {
