@@ -98,7 +98,7 @@ jobs:
 
       # Run only the required test class
       - name: Run Tests
-        run: gradle clean test --info
+        run: gradle clean test
 
       # Checkout gh-pages branch for Allure history
       - name: Checkout gh-pages
